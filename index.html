@@ -67,30 +67,30 @@
   <div class="wrap">
     <header>
       <div class="logo"><img src="Asset 1.webp" alt="Asset 1 logo" /></div>
-      <div class="brand"><h1>פרש סטור במושבה הגרמנית מחפשים עובדים</h1></div>
+      <div class="brand"><h1 id="t-title">פרש סטור במושבה הגרמנית מחפשים עובדים</h1></div>
     </header>
 
-    <section class="hero"><p>משרה במשמרות • סביבת עבודה צעירה • התחלה מיידית</p></section>
+    <section class="hero"><p id="t-sub">משרה במשמרות • סביבת עבודה צעירה • התחלה מיידית</p></section>
 
     <section class="grid">
       <article class="card">
-        <h3>טופס מועמדות קצר</h3>
+        <h3 id="t-formTitle">טופס מועמדות קצר</h3>
         <form id="applyForm" novalidate>
           <div class="row">
-            <div><label for="name">שם מלא *</label><input id="name" name="name" required placeholder="שם פרטי ומשפחה" /></div>
-            <div><label for="phone">טלפון *</label><input id="phone" name="phone" required inputmode="tel" placeholder="05X-XXXXXXX" /></div>
+            <div><label for="name" id="t-nameLabel">שם מלא *</label><input id="name" name="name" required placeholder="שם פרטי ומשפחה" /></div>
+            <div><label for="phone" id="t-phoneLabel">טלפון *</label><input id="phone" name="phone" required inputmode="tel" placeholder="05X-XXXXXXX" /></div>
           </div>
-          <label for="city">מקום מגורים</label><input id="city" name="city" placeholder="חיפה / מפרץ / נשר..." />
-          <label for="notes">הערות (לא חובה)</label><textarea id="notes" name="notes" rows="3" placeholder="זמינות, ניסיון, העדפת משמרות..."></textarea>
-          <div class="actions"><button type="submit" class="btn">שלח הודעה בוואטסאפ</button></div>
-          <div class="hint">שם וטלפון חובה. השליחה פותחת וואטסאפ עם הודעה מוכנה מראש.</div>
+          <label for="city" id="t-cityLabel">מקום מגורים</label><input id="city" name="city" placeholder="חיפה / מפרץ / נשר..." />
+          <label for="notes" id="t-notesLabel">הערות (לא חובה)</label><textarea id="notes" name="notes" rows="3" placeholder="זמינות, ניסיון, העדפת משמרות..."></textarea>
+          <div class="actions"><button type="submit" class="btn" id="t-sendBtn">שלח הודעה בוואטסאפ</button></div>
+          <div class="hint" id="t-hint">שם וטלפון חובה. השליחה פותחת וואטסאפ עם הודעה מוכנה מראש.</div>
           <div class="error" id="err" hidden></div>
         </form>
       </article>
 
       <aside class="card">
-        <h3>על המשרה</h3>
-        <ul class="bullets">
+        <h3 id="t-aboutTitle">על המשרה</h3>
+        <ul class="bullets" id="t-bullets">
           <li>עבודה בכל ימי השבוע, במשמרות.</li>
           <li>תנאים מצוינים למתאימים!</li>
           <li>מתאים לכל הגילאים — לנשים ולגברים כאחד.</li>
@@ -115,7 +115,134 @@
     const y=document.getElementById('year');
     y.textContent=new Date().getFullYear();
     function s(t){return (t||'').toString().trim();}
-    f.addEventListener('submit',ev=>{ev.preventDefault();e.hidden=true;e.textContent='';const n=s(document.getElementById('name').value);const p=s(document.getElementById('phone').value);const c=s(document.getElementById('city').value);if(!n||!p){e.textContent='שם וטלפון חובה.';e.hidden=false;return;}const m=`שלום, ראיתי שאתם מחפשים עובדים.%0aשם: ${encodeURIComponent(n)}%0aמספר טלפון: ${encodeURIComponent(p)}%0aמגורים: ${encodeURIComponent(c)}`;window.open(WA_BASE+m,'_blank');});
+
+    // i18n content
+    const I18N = {
+      he:{dir:'rtl',lang:'he',
+        title:'פרש סטור במושבה הגרמנית מחפשים עובדים',
+        sub:'משרה במשמרות • סביבת עבודה צעירה • התחלה מיידית',
+        formTitle:'טופס מועמדות קצר',
+        nameLabel:'שם מלא *', phoneLabel:'טלפון *', cityLabel:'מקום מגורים', notesLabel:'הערות (לא חובה)',
+        placeholders:{name:'שם פרטי ומשפחה', phone:'05X-XXXXXXX', city:'חיפה / מפרץ / נשר...', notes:'זמינות, ניסיון, העדפת משמרות...'},
+        sendBtn:'שלח הודעה בוואטסאפ',
+        hint:'שם וטלפון חובה. השליחה פותחת וואטסאפ עם הודעה מוכנה מראש.',
+        aboutTitle:'על המשרה',
+        bullets:[
+          'עבודה בכל ימי השבוע, במשמרות.',
+          'תנאים מצוינים למתאימים!',
+          'מתאים לכל הגילאים — לנשים ולגברים כאחד.'
+        ],
+        tpl:(n,p,c)=>`שלום, ראיתי שאתם מחפשים עובדים.%0aשם: ${n}%0aמספר טלפון: ${p}%0aמגורים: ${c||''}`
+      },
+      ar:{dir:'rtl',lang:'ar',
+        title:'فريش ستور في المستعمرة الألمانية يوظّف',
+        sub:'دوامات طوال الأسبوع • أجواء شبابية • بداية فورية',
+        formTitle:'نموذج ترشّح قصير',
+        nameLabel:'الاسم الكامل *', phoneLabel:'هاتف *', cityLabel:'مكان السكن', notesLabel:'ملاحظات (اختياري)',
+        placeholders:{name:'الاسم والكنية', phone:'05X-XXXXXXX', city:'حيفا / الميناء / نשר...', notes:'التفرّغ، الخبرة، الدوام المفضّل...'},
+        sendBtn:'إرسال عبر واتساب',
+        hint:'الاسم والهاتف إلزاميان. الإرسال يفتح واتساب مع رسالة جاهزة.',
+        aboutTitle:'عن الوظيفة',
+        bullets:[
+          'عمل بنظام الورديات طيلة أيام الأسبوع.',
+          'شروط ممتازة للملائمين!',
+          'مناسب لكل الأعمار — للنساء والرجال.'
+        ],
+        tpl:(n,p,c)=>`مرحبًا، رأيت إعلان التوظيف لديكم.%0aالاسم: ${n}%0aالهاتف: ${p}%0aمكان السكن: ${c||''}`
+      },
+      ru:{dir:'ltr',lang:'ru',
+        title:'Fresh Store в Немецкой колонии набирает сотрудников',
+        sub:'Сменный график • Молодая команда • Старт сразу',
+        formTitle:'Короткая анкета',
+        nameLabel:'Полное имя *', phoneLabel:'Телефон *', cityLabel:'Место проживания', notesLabel:'Примечания (необязательно)',
+        placeholders:{name:'Имя и фамилия', phone:'+972 5X-XXXXXXX', city:'Хайфа / Крайот / Нешер...', notes:'Доступность, опыт, желаемые смены...'},
+        sendBtn:'Отправить в WhatsApp',
+        hint:'Имя и телефон обязательны. Нажатие откроет WhatsApp с готовым текстом.',
+        aboutTitle:'О вакансии',
+        bullets:[
+          'Работа всю неделю, посменный график.',
+          'Отличные условия для подходящих!',
+          'Подходит всем — женщинам и мужчинам.'
+        ],
+        tpl:(n,p,c)=>`Здравствуйте, увидел(а) вашу вакансию.%0aИмя: ${n}%0aТелефон: ${p}%0aПроживание: ${c||''}`
+      },
+      en:{dir:'ltr',lang:'en',
+        title:'Fresh Store (German Colony) is hiring',
+        sub:'Shifts all week • Young vibe • Start immediately',
+        formTitle:'Quick application form',
+        nameLabel:'Full name *', phoneLabel:'Phone *', cityLabel:'Residence', notesLabel:'Notes (optional)',
+        placeholders:{name:'First & last name', phone:'+972 5X-XXXXXXX', city:'Haifa / Kiryat / Nesher...', notes:'Availability, experience, preferred shifts...'},
+        sendBtn:'Send on WhatsApp',
+        hint:'Name and phone are required. Clicking opens WhatsApp with a prefilled message.',
+        aboutTitle:'About the role',
+        bullets:[
+          'Shifts, all days of the week.',
+          'Great terms for the right fit!',
+          'Open to all ages — women and men.'
+        ],
+        tpl:(n,p,c)=>`Hi, I saw your hiring post.%0aName: ${n}%0aPhone: ${p}%0aResidence: ${c||''}`
+      }
+    };
+
+    // cache elements
+    const $ = sel => document.querySelector(sel);
+    const els = {
+      title: $('#t-title'), sub: $('#t-sub'), formTitle: $('#t-formTitle'),
+      nameLabel: $('#t-nameLabel'), phoneLabel: $('#t-phoneLabel'), cityLabel: $('#t-cityLabel'), notesLabel: $('#t-notesLabel'),
+      sendBtn: $('#t-sendBtn'), hint: $('#t-hint'), bullets: $('#t-bullets'),
+      name: $('#name'), phone: $('#phone'), city: $('#city'), notes: $('#notes')
+    };
+
+    function applyLang(code){
+      const t = I18N[code] || I18N.he;
+      // html attrs for direction + lang
+      document.documentElement.setAttribute('dir', t.dir);
+      document.documentElement.setAttribute('lang', t.lang);
+      // text nodes
+      els.title.textContent = t.title;
+      els.sub.textContent = t.sub;
+      els.formTitle.textContent = t.formTitle;
+      els.nameLabel.textContent = t.nameLabel;
+      els.phoneLabel.textContent = t.phoneLabel;
+      els.cityLabel.textContent = t.cityLabel;
+      els.notesLabel.textContent = t.notesLabel;
+      els.sendBtn.textContent = t.sendBtn;
+      els.hint.textContent = t.hint;
+      els.bullets.innerHTML = t.bullets.map(x=>`<li>${x}</li>`).join('');
+      // placeholders
+      els.name.placeholder = t.placeholders.name;
+      els.phone.placeholder = t.placeholders.phone;
+      els.city.placeholder = t.placeholders.city;
+      els.notes.placeholder = t.placeholders.notes;
+      // active state
+      document.querySelectorAll('.lang button').forEach(b=>{
+        b.classList.toggle('active', b.dataset.lang===code);
+      });
+      // store
+      localStorage.setItem('fresh_lang', code);
+    }
+
+    // init
+    applyLang(localStorage.getItem('fresh_lang')||'he');
+
+    // events for lang buttons
+    document.querySelectorAll('.lang button').forEach(btn=>{
+      btn.addEventListener('click', ()=> applyLang(btn.dataset.lang));
+    });
+
+    // form submit (WhatsApp)
+    f.addEventListener('submit',ev=>{
+      ev.preventDefault(); e.hidden=true; e.textContent='';
+      const lang = localStorage.getItem('fresh_lang')||'he';
+      const t = I18N[lang];
+      const n=s(els.name.value), p=s(els.phone.value), c=s(els.city.value);
+      if(!n||!p){
+        e.textContent = (lang==='ar')? 'الاسم والهاتف مطلوبان.' : (lang==='ru')? 'Имя и телефон обязательны.' : (lang==='en')? 'Name and phone are required.' : 'שם וטלפון חובה.';
+        e.hidden=false; return;
+      }
+      const msg = t.tpl(encodeURIComponent(n), encodeURIComponent(p), encodeURIComponent(c));
+      window.open(WA_BASE+msg,'_blank');
+    });
   </script>
 </body>
 </html>
