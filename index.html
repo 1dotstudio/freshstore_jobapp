@@ -5,10 +5,118 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Fresh Store — דרושים</title>
   <meta name="description" content="Fresh Store — דרושים. עמוד הגשת מועמדות קצר עם שליחה מהירה לוואטסאפ." />
-  <meta name="format-detection" content="telephone=no" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#292929;          /* כהה */
+      --paper:#333333;       /* כרטיסים */
+      --ink:#fffff5;         /* טקסט */
+      --muted:#d8d8d8;       /* טקסט משני */
+      --accent:#fe7902;      /* כתום עיקרי */
+      --cta:#fe7902;         /* כפתור */
+      --radius:18px;
+      --shadow:0 10px 25px rgba(0,0,0,.35);
+      --maxw:980px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:'Rubik',system-ui;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:22px}
+
+    header{display:flex;align-items:center;gap:14px}
+    .logo{width:64px;height:64px;border-radius:16px;background:#1c1c1c;border:1px solid #444;display:grid;place-items:center;overflow:hidden}
+    .logo img{width:100%;height:100%;object-fit:cover}
+    .brand h1{margin:0;font-size:clamp(22px,2.8vw,30px);color:var(--accent)}
+
+    .hero{margin-top:18px;background:var(--paper);border-radius:var(--radius);padding:18px;border:1px solid #444}
+    .hero p{margin:0;color:var(--muted)}
+
+    .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;margin-top:20px}
+    .card{background:var(--paper);border-radius:var(--radius);padding:16px;border:1px solid #444}
+    .card h3{margin:0 0 10px 0;color:var(--accent)}
+
+    label{display:block;margin:6px 0;font-weight:500;color:var(--ink)}
+    input,textarea{width:100%;padding:12px;border-radius:14px;background:#1c1c1c;border:1px solid #555;color:var(--ink)}
+    textarea{resize:vertical}
+
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .actions{display:flex;gap:10px;margin-top:14px}
+    .btn{background:var(--cta);color:var(--bg);padding:14px 16px;border:none;border-radius:14px;font-weight:600;cursor:pointer;transition:.2s}
+    .btn:hover{opacity:.9}
+
+    .hint{color:var(--muted);font-size:.9rem}
+    .error{color:#ff4d4d;margin-top:6px}
+
+    .bullets{margin:0;padding-inline-start:1.1em}
+    .bullets li{margin:6px 0;color:var(--ink)}
+
+    footer{margin:30px 0;color:var(--muted);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
+
+    .dock{position:fixed;inset:auto 12px 12px auto;display:flex;align-items:center;gap:8px}
+    .lang{display:flex;gap:6px;padding:8px;border-radius:999px;background:#1c1c1c;border:1px solid #444}
+    .lang button{min-width:42px;padding:8px 10px;border-radius:999px;border:none;background:#292929;color:var(--ink);cursor:pointer}
+    .lang button.active{background:var(--accent);color:var(--bg)}
+    .ig img{width:22px;height:22px;display:block}
+
+    @media(max-width:860px){.grid{grid-template-columns:1fr}}
+  </style>
 </head>
-<body>דף דרושים של Fresh Store</body>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo"><img src="Asset 1.webp" alt="Asset 1 logo" /></div>
+      <div class="brand"><h1>פרש סטור במושבה הגרמנית מחפשים עובדים</h1></div>
+    </header>
+
+    <section class="hero"><p>משרה במשמרות • סביבת עבודה צעירה • התחלה מיידית</p></section>
+
+    <section class="grid">
+      <article class="card">
+        <h3>טופס מועמדות קצר</h3>
+        <form id="applyForm" novalidate>
+          <div class="row">
+            <div><label for="name">שם מלא *</label><input id="name" name="name" required placeholder="שם פרטי ומשפחה" /></div>
+            <div><label for="phone">טלפון *</label><input id="phone" name="phone" required inputmode="tel" placeholder="05X-XXXXXXX" /></div>
+          </div>
+          <label for="city">מקום מגורים</label><input id="city" name="city" placeholder="חיפה / מפרץ / נשר..." />
+          <label for="notes">הערות (לא חובה)</label><textarea id="notes" name="notes" rows="3" placeholder="זמינות, ניסיון, העדפת משמרות..."></textarea>
+          <div class="actions"><button type="submit" class="btn">שלח הודעה בוואטסאפ</button></div>
+          <div class="hint">שם וטלפון חובה. השליחה פותחת וואטסאפ עם הודעה מוכנה מראש.</div>
+          <div class="error" id="err" hidden></div>
+        </form>
+      </article>
+
+      <aside class="card">
+        <h3>על המשרה</h3>
+        <ul class="bullets">
+          <li>עבודה בכל ימי השבוע, במשמרות.</li>
+          <li>תנאים מצוינים למתאימים!</li>
+          <li>מתאים לכל הגילאים — לנשים ולגברים כאחד.</li>
+        </ul>
+      </aside>
+    </section>
+
+    <footer>
+      <div>© <span id="year"></span> Fresh Store</div>
+    </footer>
+  </div>
+
+  <div class="dock">
+    <a class="ig" href="https://www.instagram.com/fresh_store31" target="_blank" rel="noopener"><img src="ig.png" alt="Instagram" /></a>
+    <div class="lang"><button data-lang="he" class="active">HE</button><button data-lang="ar">AR</button><button data-lang="ru">RU</button><button data-lang="en">EN</button></div>
+  </div>
+
+  <script>
+    const WA_BASE='https://wa.me/972535356977?text=';
+    const f=document.getElementById('applyForm');
+    const e=document.getElementById('err');
+    const y=document.getElementById('year');
+    y.textContent=new Date().getFullYear();
+    function s(t){return (t||'').toString().trim();}
+    f.addEventListener('submit',ev=>{ev.preventDefault();e.hidden=true;e.textContent='';const n=s(document.getElementById('name').value);const p=s(document.getElementById('phone').value);const c=s(document.getElementById('city').value);if(!n||!p){e.textContent='שם וטלפון חובה.';e.hidden=false;return;}const m=`שלום, ראיתי שאתם מחפשים עובדים.%0aשם: ${encodeURIComponent(n)}%0aמספר טלפון: ${encodeURIComponent(p)}%0aמגורים: ${encodeURIComponent(c)}`;window.open(WA_BASE+m,'_blank');});
+  </script>
+</body>
 </html>
