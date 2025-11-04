@@ -10,12 +10,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#292929;          /* כהה */
-      --paper:#333333;       /* כרטיסים */
-      --ink:#fffff5;         /* טקסט */
-      --muted:#d8d8d8;       /* טקסט משני */
-      --accent:#fe7902;      /* כתום עיקרי */
-      --cta:#fe7902;         /* כפתור */
+      --bg:#292929;
+      --paper:#333333;
+      --ink:#fffff5;
+      --muted:#d8d8d8;
+      --accent:#fe7902;
+      --cta:#25D366; /* ירוק וואטסאפ */
       --radius:18px;
       --shadow:0 10px 25px rgba(0,0,0,.35);
       --maxw:980px;
@@ -24,17 +24,17 @@
     body{margin:0;background:var(--bg);color:var(--ink);font-family:'Rubik',system-ui;-webkit-font-smoothing:antialiased}
     a{color:inherit;text-decoration:none}
 
-    .wrap{max-width:var(--maxw);margin:0 auto;padding:22px}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:22px;text-align:center}
 
-    header{display:flex;align-items:center;gap:14px}
-    .logo{width:64px;height:64px;border-radius:16px;background:#1c1c1c;border:1px solid #444;display:grid;place-items:center;overflow:hidden}
-    .logo img{width:100%;height:100%;object-fit:cover}
-    .brand h1{margin:0;font-size:clamp(22px,2.8vw,30px);color:var(--accent)}
+    header{display:flex;flex-direction:column;align-items:center;gap:14px;margin-bottom:20px}
+    .brand h1{margin:0;font-size:clamp(24px,3vw,36px);color:var(--accent)}
 
-    .hero{margin-top:18px;background:var(--paper);border-radius:var(--radius);padding:18px;border:1px solid #444}
+    .logo img{max-width:240px;height:auto;display:block;margin:0 auto}
+
+    .hero{margin-top:10px;background:var(--paper);border-radius:var(--radius);padding:18px;border:1px solid #444}
     .hero p{margin:0;color:var(--muted)}
 
-    .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;margin-top:20px}
+    .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;margin-top:20px;text-align:right}
     .card{background:var(--paper);border-radius:var(--radius);padding:16px;border:1px solid #444}
     .card h3{margin:0 0 10px 0;color:var(--accent)}
 
@@ -44,7 +44,7 @@
 
     .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
     .actions{display:flex;gap:10px;margin-top:14px}
-    .btn{background:var(--cta);color:var(--bg);padding:14px 16px;border:none;border-radius:14px;font-weight:600;cursor:pointer;transition:.2s}
+    .btn{background:var(--cta);color:#fff;padding:14px 16px;border:none;border-radius:14px;font-weight:600;cursor:pointer;transition:.2s;width:100%}
     .btn:hover{opacity:.9}
 
     .hint{color:var(--muted);font-size:.9rem}
@@ -67,8 +67,8 @@
 <body>
   <div class="wrap">
     <header>
-      <div class="logo"><img src="Asset 1.webp" alt="Asset 1 logo" /></div>
       <div class="brand"><h1>פרש סטור במושבה הגרמנית מחפשים עובדים</h1></div>
+      <div class="logo"><img src="Asset 1.webp" alt="Asset 1 logo" /></div>
     </header>
 
     <section class="hero"><p>משרה במשמרות • סביבת עבודה צעירה • התחלה מיידית</p></section>
